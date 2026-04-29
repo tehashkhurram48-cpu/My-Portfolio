@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ted Knight | Healthcare Credentialing Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:      #0b1f3a;
+  --navy2:     #122848;
+  --navy3:     #1a3560;
+  --slate:     #2c4a6e;
+  --blue-lt:   #3d6ea8;
+  --accent:    #c8a85a;
+  --accent2:   #e2c97a;
+  --white:     #fdf6e3;
+  --off:       #f5e9c8;
+  --off2:      #edd98a;
+  --line:      #d4b96a;
+  --line-dark: rgba(255,255,255,0.12);
+  --text:      #1a1408;
+  --text2:     #3a2e10;
+  --muted:     #7a6a30;
+  --shadow:    rgba(11,31,58,0.12);
+  --shadow2:   rgba(11,31,58,0.22);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--off);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════
+   TOP BAR  
+══════════════════════════════════════ */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: var(--navy);
+  border-bottom: 3px solid var(--accent);
+  box-shadow: 0 2px 24px var(--shadow2);
+}
+
+.topbar-inner {
+  max-width: 1320px; margin: 0 auto;
+  padding: 0 2.5rem;
+  display: flex; align-items: stretch; justify-content: space-between;
+  gap: 0;
+}
+
+/* Brand */
+.topbar-brand {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 1.1rem 2rem 1.1rem 0;
+  border-right: 1px solid var(--line-dark);
+  margin-right: 0; flex-shrink: 0;
+}
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem; font-weight: 700; letter-spacing: 0.02em;
+  color: var(--white); line-height: 1;
+}
+.brand-title {
+  font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--accent); margin-top: 0.3rem; font-weight: 400;
+}
+
+/* Tab Navigation */
+.tab-nav {
+  display: flex; align-items: stretch; flex: 1;
+  padding: 0 1rem;
+}
+
+.tab-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  padding: 0 1.6rem;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  white-space: nowrap; position: relative;
+}
+.tab-btn:hover { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.04); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Email CTA */
+.topbar-cta {
+  display: flex; align-items: center;
+  border-left: 1px solid var(--line-dark);
+  padding-left: 2rem; flex-shrink: 0;
+}
+.topbar-cta a {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); text-decoration: none;
+  border: 1px solid rgba(200,168,90,0.4);
+  padding: 0.5rem 1.2rem;
+  transition: all 0.2s;
+}
+.topbar-cta a:hover { background: var(--accent); color: var(--navy); }
+
+/* ══════════════════════════════════════
+   HERO BANNER  
+══════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 40%, var(--navy3) 100%);
+  padding: 8rem 2.5rem 4rem;
+  position: relative; overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.hero::after {
+  content: '';
+  position: absolute; right: -80px; top: -80px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,168,90,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 1320px; margin: 0 auto;
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: end;
+}
+
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: 0.65rem; letter-spacing: 0.45em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1.2rem;
+}
+.hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
+  font-weight: 700; line-height: 0.95; letter-spacing: -0.01em;
+  color: var(--white);
+}
+
+.hero-divider {
+  width: 64px; height: 3px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  margin: 1.6rem 0;
+}
+
+.hero-tagline {
+  font-size: 1rem; color: rgba(255,255,255,0.6);
+  line-height: 1.9; max-width: 580px; font-weight: 300;
+}
+
+.hero-stats {
+  display: flex; flex-direction: column; gap: 1px;
+  align-self: stretch; justify-content: flex-end; padding-bottom: 0.2rem;
+}
+
+.hero-stat {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  padding: 1.2rem 1.8rem; min-width: 200px;
+  border-left: 3px solid var(--accent);
+  transition: background 0.2s;
+}
+.hero-stat:hover { background: rgba(255,255,255,0.07); }
+.hero-stat-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700; color: var(--accent); line-height: 1;
+}
+.hero-stat-label {
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-top: 0.35rem;
+}
+
+/* ══════════════════════════════════════
+   MAIN CONTENT  
+══════════════════════════════════════ */
+main {
+  max-width: 1320px; margin: 0 auto;
+  padding: 3.5rem 2.5rem 6rem;
+}
+
+.tab-panel { display: none; animation: slideUp 0.3s ease; }
+.tab-panel.active { display: block; }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Panel Header */
+.panel-hd {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap; margin-bottom: 0;
+  padding-bottom: 2rem; border-bottom: 2px solid var(--navy);
+}
+.panel-hd-left { }
+.panel-eyebrow {
+  font-size: 0.62rem; letter-spacing: 0.38em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 0.5rem; font-weight: 600;
+}
+.panel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 600;
+  color: var(--navy); line-height: 1.15;
+}
+.panel-title em { font-style: italic; font-weight: 400; color: var(--slate); }
+.panel-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.85; max-width: 600px; margin-top: 0.6rem; }
+.panel-count {
+  font-family: 'Playfair Display', serif;
+  font-size: 6rem; font-weight: 700; color: var(--off2);
+  line-height: 1; flex-shrink: 0;
+}
+
+/* ── SERVICES ── */
+.svc-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; margin-top: 0;
+  border: 1px solid var(--line);
+}
+
+.svc-card {
+  background: var(--white); padding: 2.4rem 2.2rem;
+  border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden; transition: all 0.25s;
+}
+.svc-card:hover { background: var(--off); box-shadow: inset 0 0 0 2px var(--navy); z-index: 2; }
+.svc-card:nth-child(3n) { border-right: none; }
+.svc-card:nth-child(4), .svc-card:nth-child(5), .svc-card:nth-child(6) { border-bottom: none; }
+
+.svc-card-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.75rem; color: var(--line);
+  font-weight: 600; margin-bottom: 1.4rem; display: block;
+}
+
+.svc-icon-wrap {
+  width: 48px; height: 48px;
+  background: var(--navy); display: flex; align-items: center;
+  justify-content: center; font-size: 1.3rem; margin-bottom: 1.2rem;
+}
+
+.svc-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; font-weight: 600; color: var(--navy);
+  margin-bottom: 0.7rem; line-height: 1.2;
+}
+.svc-desc { font-size: 0.86rem; color: var(--muted); line-height: 1.8; }
+.svc-badge {
+  display: inline-block; margin-top: 1.4rem;
+  background: var(--navy); color: var(--accent);
+  font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 0.3rem 0.85rem; font-weight: 600;
+}
+
+/* ── SPECIALTIES ── */
+.spec-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 0; border: 1px solid var(--line); margin-top: 0;
+}
+.spec-card {
+  background: var(--white); padding: 2.4rem 2.8rem;
+  border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  display: flex; gap: 2rem; align-items: flex-start; transition: background 0.2s;
+}
+.spec-card:hover { background: var(--off); }
+.spec-card:nth-child(2n) { border-right: none; }
+.spec-card:nth-child(5), .spec-card:nth-child(6) { border-bottom: none; }
+
+.spec-idx {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem; font-weight: 700; color: var(--off2);
+  line-height: 1; flex-shrink: 0; min-width: 54px;
+}
+.spec-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem;
+}
+.spec-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
+.spec-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
+.spec-tag {
+  background: var(--off2); border: 1px solid var(--line);
+  color: var(--text2); font-size: 0.62rem; letter-spacing: 0.15em;
+  text-transform: uppercase; padding: 0.25rem 0.65rem; font-weight: 500;
+}
+
+/* ── PROJECTS ── */
+.proj-list {
+  display: flex; flex-direction: column; gap: 0;
+  border: 1px solid var(--line); margin-top: 0;
+}
+
+.proj-card {
+  background: var(--white); display: grid; grid-template-columns: 220px 1fr;
+  border-bottom: 1px solid var(--line); transition: background 0.2s;
+}
+.proj-card:last-child { border-bottom: none; }
+.proj-card:hover { background: var(--off); }
+
+.proj-sidebar {
+  background: var(--navy);
+  padding: 2.4rem 2rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative; overflow: hidden;
+}
+.proj-sidebar::after {
+  content: '';
+  position: absolute; bottom: -20px; right: -20px;
+  width: 100px; height: 100px;
+  border: 20px solid rgba(200,168,90,0.08); border-radius: 50%;
+}
+
+.proj-type-label {
+  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(200,168,90,0.6); margin-bottom: 0.4rem;
+}
+.proj-type-abbr {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.6rem; font-weight: 700; color: rgba(255,255,255,0.1);
+  line-height: 1;
+}
+.proj-done {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(200,168,90,0.12); border: 1px solid rgba(200,168,90,0.35);
+  color: var(--accent); font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; padding: 0.3rem 0.75rem; width: fit-content;
+  font-weight: 600;
+}
+
+.proj-body { padding: 2.6rem 3rem; }
+.proj-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 700; color: var(--navy);
+  margin-bottom: 1rem; line-height: 1.2;
+}
+.proj-desc { font-size: 0.88rem; color: var(--text2); line-height: 1.85; }
+.proj-meta { display: flex; gap: 2.5rem; margin-top: 1.6rem; flex-wrap: wrap; }
+.proj-meta-item { font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 0.4rem; }
+.proj-meta-item b { color: var(--navy); font-weight: 600; }
+
+/* ── CONTACT ── */
+.contact-layout {
+  display: grid; grid-template-columns: 380px 1fr; gap: 3rem; align-items: start;
+}
+
+.contact-info-panel { display: flex; flex-direction: column; gap: 0; }
+
+.avail-block {
+  background: var(--navy); padding: 1.6rem 2rem;
+  display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 2px;
+}
+.avail-dot {
+  width: 9px; height: 9px; border-radius: 50%; background: #3dba5c; flex-shrink: 0; margin-top: 4px;
+  box-shadow: 0 0 0 3px rgba(61,186,92,0.2); animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+.avail-label { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.avail-text { font-size: 0.84rem; color: rgba(255,255,255,0.65); margin-top: 0.3rem; line-height: 1.6; }
+
+.cinfo-rows { border: 1px solid var(--line); background: var(--white); }
+.cinfo-row {
+  display: flex; align-items: center; gap: 1.2rem;
+  padding: 1.15rem 1.6rem; border-bottom: 1px solid var(--line);
+  transition: background 0.2s;
+}
+.cinfo-row:last-child { border-bottom: none; }
+.cinfo-row:hover { background: var(--off); }
+.cinfo-icon {
+  width: 38px; height: 38px; background: var(--navy); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
+}
+.cinfo-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.cinfo-val { font-size: 0.9rem; color: var(--text2); margin-top: 0.15rem; }
+.cinfo-val a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--line); font-weight: 500; transition: border-color 0.2s; }
+.cinfo-val a:hover { border-color: var(--navy); }
+
+/* Contact Form */
+.cf-panel {
+  background: var(--white); border: 1px solid var(--line);
+  padding: 2.8rem;
+}
+.cf-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem; font-weight: 600; color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+.cf-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; }
+
+.cf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.cf-group { margin-bottom: 1rem; }
+.cf-group label {
+  display: block; font-size: 0.62rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--navy); margin-bottom: 0.5rem; font-weight: 600;
+}
+.cf-group input, .cf-group select, .cf-group textarea {
+  width: 100%; background: var(--off); border: 1px solid var(--line);
+  border-bottom: 2px solid var(--line);
+  color: var(--text); padding: 0.8rem 1rem;
+  font-family: 'Source Sans 3', sans-serif; font-size: 0.9rem;
+  transition: border-color 0.2s, background 0.2s; outline: none;
+}
+.cf-group input:focus, .cf-group select:focus, .cf-group textarea:focus {
+  border-bottom-color: var(--navy); background: var(--white);
+}
+.cf-group textarea { resize: vertical; min-height: 115px; }
+.cf-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230b1f3a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 1rem center;
+}
+
+.cf-btn {
+  width: 100%; margin-top: 0.5rem;
+  background: var(--navy); color: var(--white);
+  border: 2px solid var(--navy);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase;
+  padding: 1.1rem; cursor: pointer; transition: all 0.25s;
+}
+.cf-btn:hover { background: transparent; color: var(--navy); }
+
+/* ══════════════════════════════════════
+   FOOTER  
+══════════════════════════════════════ */
+footer {
+  background: var(--navy); border-top: 3px solid var(--accent);
+}
+.footer-inner {
+  max-width: 1320px; margin: 0 auto; padding: 2rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+.footer-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
+.footer-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-top: 0.2rem; }
+.footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
+.footer-email a { font-size: 0.78rem; color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(200,168,90,0.3); }
+
+/* ══════════════════════════════════════
+   RESPONSIVE  
+══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .svc-grid { grid-template-columns: repeat(2, 1fr); }
+  .svc-card:nth-child(3n) { border-right: 1px solid var(--line); }
+  .svc-card:nth-child(2n) { border-right: none; }
+  .svc-card:nth-child(5), .svc-card:nth-child(6) { border-bottom: none; }
+}
+@media (max-width: 768px) {
+  .topbar-inner { padding: 0 1rem; }
+  .tab-btn { padding: 0 0.8rem; font-size: 0.65rem; }
+  .topbar-cta { display: none; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: row; flex-wrap: wrap; }
+  .hero-stat { min-width: 140px; flex: 1; }
+  main { padding: 2rem 1rem 4rem; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .svc-card { border-right: none !important; }
+  .spec-grid { grid-template-columns: 1fr; }
+  .spec-card { border-right: none !important; }
+  .proj-card { grid-template-columns: 1fr; }
+  .proj-sidebar { padding: 1.5rem 2rem; flex-direction: row; align-items: center; gap: 1.5rem; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .cf-grid { grid-template-columns: 1fr; }
+  footer .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── TOPBAR + TABS ─── -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-brand">
+      <div class="brand-name">Ted Knight</div>
+      <div class="brand-title">Healthcare Credentialing Specialist</div>
+    </div>
+
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="services">Services</button>
+      <button class="tab-btn" data-tab="specialties">Specialties</button>
+      <button class="tab-btn" data-tab="projects">Projects</button>
+      <button class="tab-btn" data-tab="contact">Contact</button>
+    </nav>
+
+    <div class="topbar-cta">
+      <a href="mailto:tednite107@gmail.com">Get In Touch</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Healthcare Credentialing Professional</div>
+      <h1 class="hero-name">Ted Knight</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">
+        Provider Enrollment · Payer Contract Negotiation · NPI Assistance · Demographics Updates<br>
+        Serving Labs, DMEs, ASCs, Clinic Groups, Urgent Care &amp; Mental Health Providers Nationwide
+      </p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val">6+</div>
+        <div class="hero-stat-label">Provider Types Served</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">Multi-State</div>
+        <div class="hero-stat-label">AR · NC · Nationwide</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">End-to-End</div>
+        <div class="hero-stat-label">Credentialing &amp; Contracting</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MAIN ─── -->
+<main>
+
+  <!-- SERVICES -->
+  <div class="tab-panel active" id="tab-services">
+    <div class="panel-hd">
+      <div class="panel-hd-left">
+        <div class="panel-eyebrow">What I Offer</div>
+        <h2 class="panel-title">Professional <em>Credentialing Services</em></h2>
+        <p class="panel-desc">Comprehensive support across every phase of provider enrollment — from initial application through contract management, demographics, and ongoing compliance.</p>
+      </div>
+      <div class="panel-count">06</div>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <span class="svc-card-num">01</span>
+        <div class="svc-icon-wrap">🏥</div>
+        <div class="svc-name">Provider Credentialing &amp; Enrollment</div>
+        <p class="svc-desc">Full-cycle credentialing for all provider types. Every application, document, payer portal submission, and follow-up managed from start to approval — Medicare, Medicaid, and commercial payers.</p>
+        <span class="svc-badge">Core Service</span>
+      </div>
+      <div class="svc-card">
+        <span class="svc-card-num">02</span>
+        <div class="svc-icon-wrap">🤝</div>
+        <div class="svc-name">Payer Contract Negotiation</div>
+        <p class="svc-desc">Strategic negotiation with insurance payers on client demand — securing favorable reimbursement rates, clarifying contract terms, and protecting your organization's revenue cycle.</p>
+        <span class="svc-badge">On Demand</span>
+      </div>
+      <div class="svc-card">
+        <span class="svc-card-num">03</span>
+        <div class="svc-icon-wrap">🆔</div>
+        <div class="svc-name">NPI Assistance</div>
+        <p class="svc-desc">Helping providers obtain and manage National Provider Identifier numbers — Type 1 (individual) and Type 2 (organizational) — with precise taxonomy code assignments for clean billing.</p>
+        <span class="svc-badge">Individual &amp; Group</span>
+      </div>
+      <div class="svc-card">
+        <span class="svc-card-num">04</span>
+        <div class="svc-icon-wrap">📋</div>
+        <div class="svc-name">Demographics Updates</div>
+        <p class="svc-desc">Accurate, timely updates to provider records across all payers — address changes, group affiliations, specialty additions, banking/EFT information, and CAQH profile maintenance.</p>
+        <span class="svc-badge">Ongoing</span>
+      </div>
+      <div class="svc-card">
+        <span class="svc-card-num">05</span>
+        <div class="svc-icon-wrap">📊</div>
+        <div class="svc-name">Enrollment Tracking &amp; Management</div>
+        <p class="svc-desc">Proactive monitoring of credentialing status, re-credentialing alerts, expiration tracking, and audit-ready documentation — ensuring no lapse in participation or billing rights.</p>
+        <span class="svc-badge">Proactive</span>
+      </div>
+      <div class="svc-card">
+        <span class="svc-card-num">06</span>
+        <div class="svc-icon-wrap">⚖️</div>
+        <div class="svc-name">Compliance &amp; Audit Support</div>
+        <p class="svc-desc">Keeping your provider files organized and compliant with payer requirements and NCQA standards — always prepared for audits, site visits, and recredentialing reviews.</p>
+        <span class="svc-badge">Compliance</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECIALTIES -->
+  <div class="tab-panel" id="tab-specialties">
+    <div class="panel-hd">
+      <div class="panel-hd-left">
+        <div class="panel-eyebrow">Provider Types</div>
+        <h2 class="panel-title">Expertise Across <em>Every Setting</em></h2>
+        <p class="panel-desc">Each provider type has unique credentialing requirements, payer rules, and compliance standards. I bring focused, hands-on expertise across all of them.</p>
+      </div>
+      <div class="panel-count">06</div>
+    </div>
+    <div class="spec-grid">
+      <div class="spec-card">
+        <div class="spec-idx">01</div>
+        <div>
+          <div class="spec-name">Clinical Laboratories (Labs)</div>
+          <p class="spec-desc">CLIA-certified lab enrollment with Medicare, Medicaid, and commercial payers. Includes NPI Type 2 setup, taxonomy coordination, and fee schedule review for reference and independent labs.</p>
+          <div class="spec-tags"><span class="spec-tag">CLIA</span><span class="spec-tag">Medicare Part B</span><span class="spec-tag">Commercial Payers</span></div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-idx">02</div>
+        <div>
+          <div class="spec-name">Durable Medical Equipment (DME)</div>
+          <p class="spec-desc">DMEPOS supplier enrollment including Medicare NSC accreditation coordination, surety bond compliance, and multi-state Medicaid enrollment for equipment suppliers.</p>
+          <div class="spec-tags"><span class="spec-tag">Medicare NSC</span><span class="spec-tag">DMEPOS</span><span class="spec-tag">Medicaid</span></div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-idx">03</div>
+        <div>
+          <div class="spec-name">Ambulatory Surgery Centers (ASC)</div>
+          <p class="spec-desc">Facility credentialing including CMS-855B Medicare enrollment, commercial facility contracting, anesthesia provider credentialing, and privileging coordination with medical staff offices.</p>
+          <div class="spec-tags"><span class="spec-tag">CMS-855B</span><span class="spec-tag">Facility Contracts</span><span class="spec-tag">Privileging</span></div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-idx">04</div>
+        <div>
+          <div class="spec-name">Clinic Groups</div>
+          <p class="spec-desc">Multi-provider group credentialing — managing provider rosters, individual practitioner files, group contract alignment, and ensuring enrollment under the correct group NPI and tax ID.</p>
+          <div class="spec-tags"><span class="spec-tag">Roster Management</span><span class="spec-tag">Group Contracts</span><span class="spec-tag">CAQH</span></div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-idx">05</div>
+        <div>
+          <div class="spec-name">Urgent Care Centers</div>
+          <p class="spec-desc">Rapid credentialing for urgent care facilities — prioritizing speed-to-enrollment for new locations, provider onboarding, and full coverage across all walk-in payer plans.</p>
+          <div class="spec-tags"><span class="spec-tag">Fast Enrollment</span><span class="spec-tag">New Locations</span><span class="spec-tag">Multi-Payer</span></div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-idx">06</div>
+        <div>
+          <div class="spec-name">Mental Health Providers</div>
+          <p class="spec-desc">Behavioral health credentialing for therapists, psychologists, psychiatrists, and group practices — including telehealth payer enrollment, LCSW/LPC applications, and managed care panels.</p>
+          <div class="spec-tags"><span class="spec-tag">Behavioral Health</span><span class="spec-tag">Telehealth</span><span class="spec-tag">Managed Care</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="tab-panel" id="tab-projects">
+    <div class="panel-hd">
+      <div class="panel-hd-left">
+        <div class="panel-eyebrow">Completed Work</div>
+        <h2 class="panel-title">Recent <em>Projects</em></h2>
+        <p class="panel-desc">A selection of successfully completed credentialing engagements — delivered across multiple states and provider types.</p>
+      </div>
+      <div class="panel-count">03</div>
+    </div>
+    <div class="proj-list">
+
+      <div class="proj-card">
+        <div class="proj-sidebar">
+          <div>
+            <div class="proj-type-label">Ambulatory Surgery Centers</div>
+            <div class="proj-type-abbr">ASC</div>
+          </div>
+          <div class="proj-done">✓ Completed</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">ASC Credentialing — Arkansas</div>
+          <p class="proj-desc">Delivered full credentialing services for Ambulatory Surgery Centers across Arkansas. Scope covered CMS-855B Medicare facility enrollment, commercial payer contracting, anesthesia and surgical provider credentialing, privileging document coordination with medical staff offices, and ongoing demographic maintenance. Successfully achieved in-network status with all major payers operating in the state.</p>
+          <div class="proj-meta">
+            <div class="proj-meta-item">📍 <b>Arkansas</b></div>
+            <div class="proj-meta-item">🏨 <b>Ambulatory Surgery Center</b></div>
+            <div class="proj-meta-item">✅ <b>Medicare + Commercial Payers</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-sidebar" style="background: linear-gradient(160deg,#1a3a2a,#0d2218);">
+          <div>
+            <div class="proj-type-label">Durable Medical Equipment</div>
+            <div class="proj-type-abbr">DME</div>
+          </div>
+          <div class="proj-done">✓ Completed</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">DME Enrollment — Arkansas &amp; North Carolina</div>
+          <p class="proj-desc">Multi-state DMEPOS supplier enrollment across Arkansas and North Carolina. Services included Medicare NSC enrollment, accreditation coordination, surety bond compliance verification, state Medicaid enrollment in both AR and NC, commercial payer applications, NPI Type 2 setup, and taxonomy code assignment for all equipment categories supplied by the client organization.</p>
+          <div class="proj-meta">
+            <div class="proj-meta-item">📍 <b>Arkansas &amp; North Carolina</b></div>
+            <div class="proj-meta-item">🩺 <b>DMEPOS Supplier</b></div>
+            <div class="proj-meta-item">✅ <b>Medicare NSC + Multi-State Medicaid</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-sidebar" style="background: linear-gradient(160deg,#2a3a1a,#1a2d0d);">
+          <div>
+            <div class="proj-type-label">Clinical Laboratory</div>
+            <div class="proj-type-abbr">LAB</div>
+          </div>
+          <div class="proj-done">✓ Completed</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Lab Credentialing — Arkansas</div>
+          <p class="proj-desc">End-to-end credentialing for clinical laboratory operations in Arkansas. Managed CLIA certificate coordination, Medicare Part B enrollment via CMS-855B, Arkansas Medicaid laboratory enrollment, NPI Type 2 setup, taxonomy codes for laboratory specialties, commercial payer applications, and CAQH profile maintenance — ensuring complete billing compliance prior to launch.</p>
+          <div class="proj-meta">
+            <div class="proj-meta-item">📍 <b>Arkansas</b></div>
+            <div class="proj-meta-item">🔬 <b>Clinical Laboratory</b></div>
+            <div class="proj-meta-item">✅ <b>CLIA + Medicare + Medicaid</b></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="tab-panel" id="tab-contact">
+    <div class="panel-hd">
+      <div class="panel-hd-left">
+        <div class="panel-eyebrow">Get In Touch</div>
+        <h2 class="panel-title">Let's Work <em>Together</em></h2>
+        <p class="panel-desc">Looking to streamline credentialing, secure better payer contracts, or get your providers enrolled? I'm available for new engagements.</p>
+      </div>
+    </div>
+    <div class="contact-layout">
+      <div class="contact-info-panel">
+        <div class="avail-block">
+          <div class="avail-dot"></div>
+          <div>
+            <div class="avail-label">Accepting New Clients</div>
+            <div class="avail-text">Available for project-based, contract, and ongoing engagements nationwide.</div>
+          </div>
+        </div>
+        <div class="cinfo-rows">
+          <div class="cinfo-row">
+            <div class="cinfo-icon">✉️</div>
+            <div>
+              <div class="cinfo-label">Email</div>
+              <div class="cinfo-val"><a href="mailto:tednite107@gmail.com">tednite107@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="cinfo-row">
+            <div class="cinfo-icon">👤</div>
+            <div>
+              <div class="cinfo-label">Name</div>
+              <div class="cinfo-val">Ted Knight</div>
+            </div>
+          </div>
+          <div class="cinfo-row">
+            <div class="cinfo-icon">🗺️</div>
+            <div>
+              <div class="cinfo-label">Coverage</div>
+              <div class="cinfo-val">Nationwide · AR, NC &amp; beyond</div>
+            </div>
+          </div>
+          <div class="cinfo-row">
+            <div class="cinfo-icon">📋</div>
+            <div>
+              <div class="cinfo-label">Engagement Types</div>
+              <div class="cinfo-val">Project-Based · Ongoing · Consulting</div>
+            </div>
+          </div>
+          <div class="cinfo-row">
+            <div class="cinfo-icon">⚡</div>
+            <div>
+              <div class="cinfo-label">Response Time</div>
+              <div class="cinfo-val">Within 24 business hours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cf-panel">
+        <div class="cf-heading">Send an Inquiry</div>
+        <div class="cf-sub">Fill out the form below and I'll be in touch within one business day.</div>
+
+        <div class="cf-grid">
+          <div class="cf-group">
+            <label>Your Name</label>
+            <input type="text" id="cf-name" placeholder="Full name">
+          </div>
+          <div class="cf-group">
+            <label>Email Address</label>
+            <input type="email" id="cf-email" placeholder="your@email.com">
+          </div>
+        </div>
+        <div class="cf-grid">
+          <div class="cf-group">
+            <label>Organization</label>
+            <input type="text" id="cf-org" placeholder="Practice or company name">
+          </div>
+          <div class="cf-group">
+            <label>Provider Type</label>
+            <select id="cf-type">
+              <option value="">Select type...</option>
+              <option>Laboratory (Lab)</option>
+              <option>Durable Medical Equipment (DME)</option>
+              <option>Ambulatory Surgery Center (ASC)</option>
+              <option>Clinic Group</option>
+              <option>Urgent Care</option>
+              <option>Mental Health</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="cf-group">
+          <label>Service Needed</label>
+          <select id="cf-service">
+            <option value="">Select service...</option>
+            <option>Provider Credentialing &amp; Enrollment</option>
+            <option>Payer Contract Negotiation</option>
+            <option>NPI Assistance</option>
+            <option>Demographics Updates</option>
+            <option>Enrollment Tracking &amp; Management</option>
+            <option>Compliance &amp; Audit Support</option>
+            <option>Multiple / Not Sure</option>
+          </select>
+        </div>
+        <div class="cf-group">
+          <label>Message</label>
+          <textarea id="cf-msg" placeholder="Describe your credentialing needs, current challenges, or questions..."></textarea>
+        </div>
+        <button class="cf-btn" onclick="sendInquiry()">Submit Inquiry →</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Ted Knight</div>
+      <div class="footer-title">Healthcare Credentialing &amp; Payer Contracting Specialist</div>
+    </div>
+    <div class="footer-copy">© 2025 Ted Knight · All Rights Reserved</div>
+    <div class="footer-email"><a href="mailto:tednite107@gmail.com">tednite107@gmail.com</a></div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  function sendInquiry() {
+    const name  = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const org   = document.getElementById('cf-org').value.trim();
+    const type  = document.getElementById('cf-type').value;
+    const svc   = document.getElementById('cf-service').value;
+    const msg   = document.getElementById('cf-msg').value.trim();
+    const btn   = document.querySelector('.cf-btn');
+    if (!name || !email || !msg) {
+      btn.textContent = '⚠ Please fill in all required fields';
+      btn.style.background = '#8b0000'; btn.style.borderColor = '#8b0000';
+      setTimeout(() => { btn.textContent = 'Submit Inquiry →'; btn.style.background = ''; btn.style.borderColor = ''; }, 2500);
+      return;
+    }
+    const subject = encodeURIComponent('Credentialing Inquiry — ' + (type || 'General') + ' | ' + name);
+    const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nOrganization: ' + (org||'N/A') + '\nProvider Type: ' + (type||'N/A') + '\nService Needed: ' + (svc||'N/A') + '\n\nMessage:\n' + msg);
+    window.location.href = 'mailto:tednite107@gmail.com?subject=' + subject + '&body=' + body;
+  }
+</script>
+</body>
+</html>
